@@ -19,13 +19,14 @@ const Services = () => {
               What We Cater
             </p>
 
-            <h2 className="mt-5 font-display text-5xl leading-[0.95] text-[#111111] sm:text-6xl">
-              Corporate Catering
-              <br />
-              <span className="text-[#B88920]">
-                for Every Occasion.
-              </span>
-            </h2>
+           <h2 className="mt-5 font-display text-4xl leading-[1] tracking-tight text-[#111111] sm:text-5xl sm:leading-[0.98] lg:text-6xl">
+  Corporate Catering
+  <br />
+  <span className="text-[#B88920]">
+    for Every Occasion.
+  </span>
+</h2>
+
           </div>
 
           <p className="max-w-xl text-base leading-8 text-[#4a4a4a] sm:text-[17px] lg:justify-self-end">

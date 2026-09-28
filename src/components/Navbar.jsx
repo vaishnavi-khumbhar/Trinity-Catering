@@ -8,6 +8,7 @@ import trinityLogo from "../assets/logo/trinity-logo.jpeg";
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   const { openContact } = useContact();
 
   const navItems = [
@@ -18,16 +19,28 @@ const Navbar = () => {
     { label: "Gallery", href: "/gallery" },
   ];
 
+  /* =========================
+     SCROLL DETECTION
+  ========================== */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 12);
+    };
 
     onScroll();
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
+  /* =========================
+     BODY SCROLL LOCK
+  ========================== */
   useEffect(() => {
     document.body.style.overflow = mobileMenu ? "hidden" : "";
 
@@ -36,32 +49,43 @@ const Navbar = () => {
     };
   }, [mobileMenu]);
 
+  /* =========================
+     CONTACT
+  ========================== */
   const handleContact = () => {
     setMobileMenu(false);
     openContact();
   };
 
+  /* =========================
+     NAVIGATION
+  ========================== */
   const handleLink = () => {
     setMobileMenu(false);
 
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: "instant",
     });
   };
 
   return (
     <>
-      {/* Navbar */}
+      {/* =====================================================
+          NAVBAR
+      ====================================================== */}
       <header className="fixed left-0 right-0 top-0 z-[80] px-3 pt-3 sm:px-5 sm:pt-5">
         <nav
           className={`mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-2xl border px-4 py-2 backdrop-blur-xl transition-all duration-500 sm:px-5 ${
             scrolled
-              ? "border-black/5 bg-white/95 shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-2"
-              : "border-white/10 bg-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] py-2.5"
+              ? "border-black/5 bg-white/95 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+              : "border-white/10 bg-white/80 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
           }`}
         >
-          {/* Logo */}
+          {/* =========================
+              LOGO
+          ========================== */}
           <Link
             to="/"
             onClick={handleLink}
@@ -74,7 +98,9 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* =========================
+              DESKTOP NAVIGATION
+          ========================== */}
           <div className="hidden flex-1 items-center justify-center gap-6 lg:flex xl:gap-8">
             {navItems.map((item) => (
               <Link
@@ -90,7 +116,9 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Desktop CTA */}
+          {/* =========================
+              DESKTOP CTA
+          ========================== */}
           <button
             onClick={openContact}
             className="group relative hidden shrink-0 items-center gap-2 overflow-hidden rounded-lg bg-[#111111] px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white sm:flex"
@@ -107,7 +135,9 @@ const Navbar = () => {
             />
           </button>
 
-          {/* Mobile Menu Button */}
+          {/* =========================
+              MOBILE MENU BUTTON
+          ========================== */}
           <button
             onClick={() => setMobileMenu(true)}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#111111] text-white shadow-sm transition-transform duration-300 active:scale-90 lg:hidden"
@@ -118,7 +148,14 @@ const Navbar = () => {
         </nav>
       </header>
 
-      {/* Mobile Menu */}
+      {/* =====================================================
+          MOBILE STICKY CTA
+      ====================================================== */}
+     
+
+      {/* =====================================================
+          MOBILE MENU
+      ====================================================== */}
       <AnimatePresence>
         {mobileMenu && (
           <>
@@ -143,8 +180,11 @@ const Navbar = () => {
               }}
               className="fixed right-0 top-0 z-[100] flex h-screen w-[85%] max-w-sm flex-col bg-[#111111] p-6 sm:p-7"
             >
-              {/* Mobile Header */}
+              {/* =========================
+                  MOBILE HEADER
+              ========================== */}
               <div className="flex items-center justify-between">
+
                 <div className="flex items-center rounded-xl border border-[#C89A2E]/50 bg-white p-1.5 shadow-sm">
                   <img
                     src={trinityLogo}
@@ -160,15 +200,25 @@ const Navbar = () => {
                 >
                   <X size={18} />
                 </button>
+
               </div>
 
-              {/* Mobile Navigation */}
+              {/* =========================
+                  MOBILE NAVIGATION
+              ========================== */}
               <div className="mt-10 flex flex-1 flex-col justify-center gap-0 sm:mt-14">
+
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.label}
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{
+                      opacity: 0,
+                      x: 24,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                    }}
                     transition={{
                       delay: 0.08 + index * 0.06,
                       duration: 0.4,
@@ -188,12 +238,21 @@ const Navbar = () => {
                     </Link>
                   </motion.div>
                 ))}
+
               </div>
 
-              {/* Mobile CTA */}
+              {/* =========================
+                  MOBILE MENU CTA
+              ========================== */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{
+                  opacity: 0,
+                  y: 16,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   delay: 0.1 + navItems.length * 0.06 + 0.1,
                 }}
@@ -211,6 +270,7 @@ const Navbar = () => {
                   <ArrowUpRight size={16} />
                 </button>
               </motion.div>
+
             </motion.div>
           </>
         )}

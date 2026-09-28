@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import LoadingScreen from "./components/LoadingScreen";
@@ -15,6 +19,25 @@ import Menu from "./pages/Menu";
 import GalleryPage from "./pages/Gallery";
 import Contact from "./pages/Contact";
 
+
+import MobileCTA from "./components/MobileCTA";
+/* =========================
+   SCROLL TO TOP
+========================= */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => {
   const [loading, setLoading] = useState(true);
 
@@ -28,27 +51,69 @@ const App = () => {
 
   return (
     <>
+      {/* Scroll page to top whenever route changes */}
+      <ScrollToTop />
+
+      {/* Loading Screen */}
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen />}
       </AnimatePresence>
 
+      {/* Navbar */}
       <Navbar />
 
+      {/* Main Pages */}
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/contact" element={<Contact />} />
+
+          <Route
+            path="/"
+            element={<Home />}
+          />
+
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          <Route
+            path="/services"
+            element={<ServicesPage />}
+          />
+
+          <Route
+            path="/menu"
+            element={<Menu />}
+          />
+
+          <Route
+            path="/gallery"
+            element={<GalleryPage />}
+          />
+
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+
         </Routes>
       </main>
 
+      {/* Footer */}
       <Footer />
 
+      {/* WhatsApp */}
       <WhatsAppButton />
 
+
+
+<MobileCTA />
+
+
+{/* Mobile CTA */}
+<MobileCTA />
+
+      {/* Contact Popup */}
       <ContactPopup />
     </>
   );
