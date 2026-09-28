@@ -9,6 +9,7 @@ import {
   FaFacebookF,
 } from "react-icons/fa";
 
+import { Link } from "react-router-dom";
 import { useContact } from "../context/ContactContext";
 import trinityLogo from "../assets/logo/trinity-logo.jpeg";
 
@@ -31,13 +32,16 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
 
-            <div className="flex w-fit items-center rounded-xl border border-[#C89A2E]/40 bg-white p-2 shadow-sm">
+            <Link
+              to="/"
+              className="flex w-fit items-center rounded-xl border border-[#C89A2E]/40 bg-white p-2 shadow-sm"
+            >
               <img
                 src={trinityLogo}
                 alt="Trinity Catering"
                 className="h-10 w-auto object-contain sm:h-12"
               />
-            </div>
+            </Link>
 
             <p className="mt-6 max-w-md font-display text-3xl leading-tight text-white/90">
               Your Corporate Catering Partner,
@@ -54,7 +58,7 @@ const Footer = () => {
 
           </div>
 
-          {/* Links */}
+          {/* Quick Links */}
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#C89A2E]">
               Quick Links
@@ -62,30 +66,45 @@ const Footer = () => {
 
             <div className="mt-5 flex flex-col gap-3.5 text-sm text-white/60">
 
-              <a href="/" className="group flex w-fit items-center gap-2 transition hover:text-white">
+              <Link
+                to="/"
+                className="group flex w-fit items-center gap-2 transition hover:text-white"
+              >
                 <span className="h-px w-0 bg-[#C89A2E] transition-all duration-300 group-hover:w-3" />
                 Home
-              </a>
+              </Link>
 
-              <a href="/about" className="group flex w-fit items-center gap-2 transition hover:text-white">
+              <Link
+                to="/about"
+                className="group flex w-fit items-center gap-2 transition hover:text-white"
+              >
                 <span className="h-px w-0 bg-[#C89A2E] transition-all duration-300 group-hover:w-3" />
                 About
-              </a>
+              </Link>
 
-              <a href="/services" className="group flex w-fit items-center gap-2 transition hover:text-white">
+              <Link
+                to="/services"
+                className="group flex w-fit items-center gap-2 transition hover:text-white"
+              >
                 <span className="h-px w-0 bg-[#C89A2E] transition-all duration-300 group-hover:w-3" />
                 Services
-              </a>
+              </Link>
 
-              <a href="/menus" className="group flex w-fit items-center gap-2 transition hover:text-white">
+              <Link
+                to="/menu"
+                className="group flex w-fit items-center gap-2 transition hover:text-white"
+              >
                 <span className="h-px w-0 bg-[#C89A2E] transition-all duration-300 group-hover:w-3" />
                 Menus
-              </a>
+              </Link>
 
-              <a href="/gallery" className="group flex w-fit items-center gap-2 transition hover:text-white">
+              <Link
+                to="/gallery"
+                className="group flex w-fit items-center gap-2 transition hover:text-white"
+              >
                 <span className="h-px w-0 bg-[#C89A2E] transition-all duration-300 group-hover:w-3" />
                 Gallery
-              </a>
+              </Link>
 
               <button
                 onClick={openContact}
